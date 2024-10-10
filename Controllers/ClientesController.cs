@@ -78,6 +78,10 @@ namespace ApiEmpresa.Controllers
         [HttpPost]
         public async Task<ActionResult<Clientes>> PostClientes(Clientes clientes)
         {
+            if (_context.Clientes == null)
+            {
+                return Problem("Entity set 'Conexiones.Clientes' is null.");
+            }
             _context.Clientes.Add(clientes);
             await _context.SaveChangesAsync();
 
